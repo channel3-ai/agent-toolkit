@@ -1,0 +1,73 @@
+{
+  "name": "@channel3/ai-sdk-tools",
+  "version": "0.1.0",
+  "description": "Channel3 product search tools for the Vercel AI SDK: search 100M+ products and compare live retailer offers.",
+  "author": "Channel3",
+  "license": "MIT",
+  "homepage": "https://channel3.ai/docs/ai-sdk",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/channel3-ai/ai-sdk-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/channel3-ai/ai-sdk-tools/issues"
+  },
+  "keywords": [
+    "ai",
+    "ai-sdk",
+    "vercel",
+    "tools",
+    "channel3",
+    "shopping",
+    "product-search",
+    "ecommerce",
+    "agents"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "prepublishOnly": "pnpm typecheck && pnpm build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@channel3/sdk": "^4.8.0",
+    "zod": "^4.6.7"
+  },
+  "peerDependencies": {
+    "ai": "^6.0.0 || ^7.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "ai": "^7.0.164",
+    "tsup": "^9.0.0",
+    "typescript": "^6.0.3",
+    "vitest": "^5.1.0"
+  }
+}
