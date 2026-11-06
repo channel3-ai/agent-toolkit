@@ -14,7 +14,7 @@ pnpm add ai @channel3/ai-sdk-tools
 
 ## Setup
 
-Set `CHANNEL3_API_KEY` in your environment. [Create a free API key](https://channel3.ai/sign-up/developer): every account gets 1,000 free credits a month, and each tool call uses one.
+Set `CHANNEL3_API_KEY` in your environment. [Create a free API key](https://channel3.ai/sign-up/developer): every account gets 1,000 free credits a month. A search uses one credit; product details by ID are free, and each retailer URL lookup uses one credit.
 
 ## Usage
 
