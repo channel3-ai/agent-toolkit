@@ -6,6 +6,7 @@
 | --- | --- |
 | [Vercel AI SDK](https://ai-sdk.dev) v6 and v7 | `@channel3/agent-toolkit/ai-sdk` |
 | [LangChain.js](https://js.langchain.com) v1 | `@channel3/agent-toolkit/langchain` |
+| [Mastra](https://mastra.ai) v1 | `@channel3/agent-toolkit/ai-sdk` (Mastra agents accept AI SDK tools) |
 
 The tools are the same ones the [Channel3 MCP server](https://github.com/channel3-ai/mcp-server) serves to MCP clients: `search_products` and `get_products`.
 
@@ -61,6 +62,25 @@ const result = await agent.invoke({
 ```
 
 Both tools use `responseFormat: "content_and_artifact"`. The model sees a summary for `search_products` and JSON for `get_products`. The full structured result is on the `ToolMessage` as `artifact`.
+
+## Mastra
+
+Mastra agents accept AI SDK tools, so use the `/ai-sdk` entry point:
+
+```typescript
+import { Agent } from '@mastra/core/agent';
+import { channel3Tools } from '@channel3/agent-toolkit/ai-sdk';
+
+const agent = new Agent({
+  id: 'shopping-agent',
+  name: 'Shopping Agent',
+  instructions: 'You are a shopping assistant. Find products and compare retailer offers.',
+  model: 'anthropic/claude-sonnet-5-5',
+  tools: channel3Tools(),
+});
+
+const result = await agent.generate('Find me a leather golf glove under $40.');
+```
 
 ## Tools
 

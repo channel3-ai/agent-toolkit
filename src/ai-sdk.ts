@@ -30,10 +30,18 @@ export function createSearchProductsTool(
 		description: searchProductsDescription(searchLimit(options)),
 		inputSchema: searchProductsInputSchema,
 		execute: (input) => searchProducts(options, input),
-		toModelOutput: ({ input, output }) => ({
-			type: "text",
-			value: summarizeSearch(input, output),
-		}),
+		toModelOutput: (args) => {
+			// Mastra passes the raw result instead of `{ input, output }`.
+			const raw = args as unknown as Partial<SearchProductsResult>;
+			const isRawResult = Array.isArray(raw.products);
+			return {
+				type: "text",
+				value: summarizeSearch(
+					isRawResult ? undefined : args.input,
+					isRawResult ? (raw as SearchProductsResult) : args.output,
+				),
+			};
+		},
 	});
 }
 
