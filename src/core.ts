@@ -124,8 +124,11 @@ export async function getProducts(
 }
 
 /** The compact text the model sees for a search: one line per product. */
-export function summarizeSearch(input: SearchProductsInput, result: SearchProductsResult): string {
-	const what = input.query ? ` for "${input.query}"` : " for the image";
+export function summarizeSearch(
+	input: Partial<SearchProductsInput> | undefined,
+	result: SearchProductsResult,
+): string {
+	const what = input?.query ? ` for "${input.query}"` : input?.image_url ? " for the image" : "";
 	return [
 		`Found ${result.products.length} products${what}.`,
 		...result.products.map(productLine),
